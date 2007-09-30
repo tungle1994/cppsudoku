@@ -1,24 +1,3 @@
-/*
- * SudokuGrid.h
- * Copyright (C) Mathias De Maré 2007 <mathias.demare@gmail.com>
- * 
- * SudokuGrid.h is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; only
- * version 2.1 of the License, not any later version.
- * 
- * SudokuGrid.h is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with SudokuGrid.h.  If not, write to:
- * 	The Free Software Foundation, Inc.,
- * 	51 Franklin Street, Fifth Floor
- * 	Boston, MA  02110-1301, USA.
- */
-
 #ifndef H_SUDOGRID
 #define H_SUDOGRID
 
@@ -49,7 +28,7 @@ class SudokuGrid {
 		~SudokuGrid() {
 			std::cout << "SudokuGrid destructor call" << std::endl;
 		}
-		int addGiven(int vertical, int horizontal);
+		int addGiven(int vertical, int horizontal, int value);
 		int addSquare(int vertical, int horizontal);
 		/**
 		* Makes it impossible to add more squares by calling addGiven(),
@@ -71,9 +50,12 @@ class SudokuGrid {
 	private:
 		int maxNumber; //Numbers go from 1 to maxNumber.
 		bool squaresAddable; //Is it still allowed to add a given?
-		/*
+		/**
 		* Grid containing a vector of ints (the possible values)
 		* If the square is not an element of the sudoku, it contains '-1'.
+		* gridContainer.at(i) is the i-th row
+		* gridContainer.at(i).at(j) is the i-th row and the j-th column
+		* gridContainer.at(i).at(j).at(k) is the i-th row, the j-th column and the k-th possible value
 		*/
 		std::vector<std::vector<std::vector<int> > > gridContainer;
 		//Vector that contains pairs of ints (horizontal and vertical)
