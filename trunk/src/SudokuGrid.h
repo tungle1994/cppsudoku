@@ -12,24 +12,26 @@ class SudokuGrid {
 		/**
 		* Constructor throws out_of_range exception when maximumNumber <= 0.
 		*/
-		SudokuGrid(int maximumNumber) throw(std::out_of_range) {
+		SudokuGrid(int maximumNumber, int maxWidth) throw(std::out_of_range) {
 			if(maximumNumber<=0) {
 				throw std::out_of_range("maximumNumber <= 0");
 			}
 			maxNumber = maximumNumber;
+			width = maxWidth;
 			squaresAddable = true;
 		}
 		/**
 		* The list contains (starting top left and going to the right,
 		* then down) either '0' or a given.
 		*/
-		SudokuGrid(int maxNumber, std::vector<int>& list, int width) \
+		SudokuGrid(int maxNumber, std::vector<int>& list, int maxWidth) \
 		throw(std::out_of_range);
 		~SudokuGrid() {
 			std::cout << "SudokuGrid destructor call" << std::endl;
 		}
 		int addGiven(int vertical, int horizontal, int value);
 		int addSquare(int vertical, int horizontal);
+		int addGroup(std::vector<std::vector<int> >& group);
 		/**
 		* Makes it impossible to add more squares by calling addGiven(),
 		* addSquare() or addGroup().
@@ -44,11 +46,14 @@ class SudokuGrid {
 		int setValue(int vertical, int horizontal, int value);
 		std::vector<int>& getValues(int vertical, int horizontal);
 		int removeValue(int vertical, int horizontal, int value);
-		int addGroup(std::vector<std::vector<int> >& group);
+
 		std::vector<std::vector<std::vector<int> > >& getGroups(int vertical, \
 															  int horizontal);
+
+		friend bool givenCompare();
 	private:
 		int maxNumber; //Numbers go from 1 to maxNumber.
+		int width;
 		bool squaresAddable; //Is it still allowed to add a given?
 		/**
 		* Grid containing a vector of ints (the possible values)
