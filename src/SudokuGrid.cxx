@@ -1,10 +1,11 @@
-#include <vector>
+#include <algorithm>
 #include "SudokuGrid.h"
 
 using namespace std;
 Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
-							   int width) throw(std::out_of_range) {
+							   int maxWidth) throw(std::out_of_range) {
 		Sudoku::SudokuGrid::squaresAddable = true;
+		Sudoku::SudokuGrid::width = maxWidth;
 		if(maximumNumber<=0) {
 				throw std::out_of_range("maximumNumber <= 0");
 		}
@@ -52,18 +53,42 @@ Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
 			}
 			gridContainer.push_back(lastLine);
 		}
+		std::sort(givens.begin(),givens.end(),Sudoku::givenCompare); //BUG? What is wrong with this?
 }
 
 int Sudoku::SudokuGrid::addGiven(int vertical, int horizontal, int value) {
+	/*if(horizontal>=width) {
+		throw std::out_of_range("horizontal>=sudoku-width");
+	}
 	//Eerst door lijst met givens lopen, en kijken of die er al in zit
-
 	int height = (int) gridContainer.size();
 	if(height == 0) {
-
-		this(maxNumber, 
+		height = horizontal+1;
 	}
 	else {
 
 	}
+	return 0;*/
+	std::cout << "addGiven: STUB" << std::endl;
 	return 0;
+}
+
+int Sudoku::SudokuGrid::addSquare(int vertical, int horizontal) {
+	std::cout << "addSquare: STUB" << std::endl;
+	return 0;
+}
+
+int Sudoku::SudokuGrid::addGroup(std::vector<std::vector<int> >& group) {
+	std::cout << "addGroup: STUB" << std::endl;
+	return 0;
+}
+
+int Sudoku::SudokuGrid::closeSquaresAccess() {
+	Sudoku::SudokuGrid::squaresAddable = false;
+	return 0;
+}
+
+bool isGiven(int vertical, int horizontal) {
+	cout << "STUB" << endl;
+	return true;
 }
