@@ -1,5 +1,5 @@
 The CppSudoku Project
-Copyright (C) Mathias De Maré 2007 <mathias.demare@gmail.com>
+Copyright (C) Mathias De Maré 2007 <mathias DOT demare AT gmail DOT com>
 
 The CppSudoku Project is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
