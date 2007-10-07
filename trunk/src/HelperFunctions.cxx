@@ -1,6 +1,6 @@
 #include "HelperFunctions.h"
 
-bool givenCompare(std::vector<int>& a, std::vector<int>& b) {
+bool Sudoku::givenCompare(std::vector<int>& a, std::vector<int>& b) {
 	if(((int) a.size() != 2) || ((int) b.size() != 2)) {
 		std::cout << "Throw some exception! STUB" << std::endl;
 		return false;
