@@ -1,5 +1,6 @@
 #include <algorithm>
 #include "SudokuGrid.h"
+#include "HelperFunctions.h"
 
 using namespace std;
 Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
@@ -53,7 +54,9 @@ Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
 			}
 			gridContainer.push_back(lastLine);
 		}
-		std::sort(givens.begin(),givens.end(),Sudoku::givenCompare); //BUG? What is wrong with this?
+		std::sort(Sudoku::SudokuGrid::givens.begin(), \
+		Sudoku::SudokuGrid::givens.end(), \
+		Sudoku::givenCompare); //BUG? What is wrong with this?
 }
 
 int Sudoku::SudokuGrid::addGiven(int vertical, int horizontal, int value) {
@@ -88,7 +91,15 @@ int Sudoku::SudokuGrid::closeSquaresAccess() {
 	return 0;
 }
 
-bool isGiven(int vertical, int horizontal) {
+bool Sudoku::SudokuGrid::isGiven(int vertical, int horizontal) {
 	cout << "STUB" << endl;
 	return true;
+}
+
+int Sudoku::SudokuGrid::getValue(int vertical, int horizontal) {
+	if(vertical<0 || horizontal<0 \
+	|| vertical >= (int) Sudoku::SudokuGrid::gridContainer.size() \
+	|| horizontal >= (int) Sudoku::SudokuGrid::gridContainer.at(0).size()) {
+		
+	}
 }
