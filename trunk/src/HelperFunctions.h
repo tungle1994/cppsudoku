@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace Sudoku {
-	bool givenCompare(std::vector<int>& a, std::vector<int>& b);
+	bool givenCompare(std::vector<int> a, std::vector<int> b);
 }
 
 #endif
