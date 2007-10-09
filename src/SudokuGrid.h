@@ -42,7 +42,7 @@ class SudokuGrid {
 		/**
 		* Returns a value if there's only 1, zero otherwise.
 		*/
-		int getValue(int vertical, int horizontal);
+		int getValue(int vertical, int horizontal) throw(std::out_of_range);
 		int setValue(int vertical, int horizontal, int value);
 		std::vector<int>& getValues(int vertical, int horizontal);
 		int removeValue(int vertical, int horizontal, int value);
@@ -50,7 +50,6 @@ class SudokuGrid {
 		std::vector<std::vector<std::vector<int> > >& getGroups(int vertical, \
 															  int horizontal);
 
-		friend bool givenCompare();
 	private:
 		int maxNumber; //Numbers go from 1 to maxNumber.
 		int width;

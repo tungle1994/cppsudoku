@@ -56,7 +56,7 @@ Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
 		}
 		std::sort(Sudoku::SudokuGrid::givens.begin(), \
 		Sudoku::SudokuGrid::givens.end(), \
-		Sudoku::givenCompare); //BUG? What is wrong with this?
+		Sudoku::givenCompare);
 }
 
 int Sudoku::SudokuGrid::addGiven(int vertical, int horizontal, int value) {
@@ -96,10 +96,13 @@ bool Sudoku::SudokuGrid::isGiven(int vertical, int horizontal) {
 	return true;
 }
 
-int Sudoku::SudokuGrid::getValue(int vertical, int horizontal) {
+int Sudoku::SudokuGrid::getValue(int vertical, int horizontal) \
+throw(std::out_of_range) {
 	if(vertical<0 || horizontal<0 \
 	|| vertical >= (int) Sudoku::SudokuGrid::gridContainer.size() \
 	|| horizontal >= (int) Sudoku::SudokuGrid::gridContainer.at(0).size()) {
-		
+		throw std::out_of_range("vertical or horizontal out of range");
 	}
+	cout << "STUB" << endl;
+	return 0;
 }
