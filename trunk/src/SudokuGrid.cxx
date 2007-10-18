@@ -92,7 +92,11 @@ int Sudoku::SudokuGrid::closeSquaresAccess() {
 }
 
 bool Sudoku::SudokuGrid::isGiven(int vertical, int horizontal) {
-	cout << "STUB" << endl;
+	std::cout << "Partial stub: no error checking!" << std::endl;
+	std::binary_search(Sudoku::SudokuGrid::givens.begin(), \
+		Sudoku::SudokuGrid::givens.end(), \
+		Sudoku::SudokuGrid::gridContainer.at(vertical).at(horizontal), \
+		Sudoku::givenEquals);
 	return true;
 }
 
