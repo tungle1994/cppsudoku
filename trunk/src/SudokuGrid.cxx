@@ -82,8 +82,12 @@ int Sudoku::SudokuGrid::addSquare(int vertical, int horizontal) {
 }
 
 int Sudoku::SudokuGrid::addGroup(std::vector<std::vector<int> >& group) {
-	std::cout << "addGroup: STUB" << std::endl;
-	return 0;
+	//std::cout << "addGroup: STUB" << std::endl;
+	if(Sudoku::SudokuGrid::squaresAddable) {
+		Sudoku::SudokuGrid::groupsList.push_back(group);
+		return 0;
+	}
+	else return 1;
 }
 
 int Sudoku::SudokuGrid::closeSquaresAccess() {
@@ -107,6 +111,10 @@ throw(std::out_of_range) {
 	|| horizontal >= (int) Sudoku::SudokuGrid::gridContainer.at(0).size()) {
 		throw std::out_of_range("vertical or horizontal out of range");
 	}
-	cout << "STUB" << endl;
-	return 0;
+	else if(Sudoku::SudokuGrid::isGiven(vertical, horizontal)) {
+		return Sudoku::SudokuGrid::gridContainer.at(vertical).at(horizontal).at(0);
+	}
+	else {
+		return -1;
+	}
 }
