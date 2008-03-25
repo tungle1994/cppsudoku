@@ -3,6 +3,13 @@
 #include "HelperFunctions.h"
 
 using namespace std;
+/**
+* Constructor for a SudokuGrid.
+* list contains the values:
+*  - a positive number if there's a given
+*  - 0 if the number is unknown
+*  - -1 for an empty spot
+*/
 Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
 							   int maxWidth) throw(std::out_of_range) {
 		Sudoku::SudokuGrid::squaresAddable = true;
@@ -12,66 +19,36 @@ Sudoku::SudokuGrid::SudokuGrid(int maximumNumber, std::vector<int>& list, \
 		}
 		Sudoku::SudokuGrid::maxNumber = maximumNumber;
 		int height = ((int) list.size())/width;
-		for(int i=0;i<height;i++) {
+		for(int i=0;i<height;i++) { //All the lines
 			vector<vector<int> > newLine;
-			for(int j=0;j<width;j++) {
-				vector<int> item;
-				if(list.at(i*width+j)==0) {
+			for(int j=0;j<width;j++) { //All the squares
+				vector<int> item; //One square
+				if(list.at(i*width+j)==0) { //No given
 					for(int k=1;k<=maximumNumber;k++) {
 						item.push_back(k);
 					}
 				}
-				else if(list.at(i*width+j)>0) {
+				else if(list.at(i*width+j)>0) { //Given
 					item.push_back(list.at(i*width+j));
 					vector<int> givensLocation;
 					givensLocation.push_back(i); //height
 					givensLocation.push_back(j); //width
 					givens.push_back(givensLocation);
 				}
+				else { //Empty spot
+					item.push_back(-1);
+				}
 				newLine.push_back(item);
 			}
 			gridContainer.push_back(newLine);
 		}
-		//Now push the last line:
-		int lastLineContent = (int) list.size() - height*width;
-		if(lastLineContent > 0) {
-			vector<vector<int> > lastLine;
-			for(int i=0;i<lastLineContent;i++) {
-				vector<int> item;
-				if(list.at(height*width+i)==0) {
-					for(int k=1;k<=maximumNumber;k++) {
-						item.push_back(k);
-					}
-				}
-				else if(list.at(height*width+i)>0) {
-					item.push_back(list.at(height*width+i));
-					vector<int> givensLocation;
-					givensLocation.push_back(height); //height
-					givensLocation.push_back(i); //width
-					givens.push_back(givensLocation);
-				}
-				lastLine.push_back(item);
-			}
-			gridContainer.push_back(lastLine);
-		}
+		//Sort the givens
 		std::sort(Sudoku::SudokuGrid::givens.begin(), \
 		Sudoku::SudokuGrid::givens.end(), \
 		Sudoku::givenCompare);
 }
 
 int Sudoku::SudokuGrid::addGiven(int vertical, int horizontal, int value) {
-	/*if(horizontal>=width) {
-		throw std::out_of_range("horizontal>=sudoku-width");
-	}
-	//Eerst door lijst met givens lopen, en kijken of die er al in zit
-	int height = (int) gridContainer.size();
-	if(height == 0) {
-		height = horizontal+1;
-	}
-	else {
-
-	}
-	return 0;*/
 	std::cout << "addGiven: STUB" << std::endl;
 	return 0;
 }
