@@ -1,0 +1,1 @@
+A C++ library that allows one to generate and solve Sudoku's.
